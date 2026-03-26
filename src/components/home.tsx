@@ -7,7 +7,6 @@ import { useState } from "react";
 type UnsplashImage = {
   id: string;
   alt_description: string | null;
-  description: string | null;
   likes: number;
   user: {
     name: string;
@@ -20,16 +19,6 @@ type UnsplashImage = {
 type UnsplashResponse = {
   results: UnsplashImage[];
 };
-
-function shortenText(text: string | null, fallback: string) {
-  const value = text?.trim() || fallback;
-
-  if (value.length <= 70) {
-    return value;
-  }
-
-  return `${value.slice(0, 67).trim()}...`;
-}
 
 export default function Home() {
   const [search, setSearch] = useState("nature");
@@ -50,43 +39,31 @@ export default function Home() {
 
         {images.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
-            {images.map((image) => {
-              const shortDescription = shortenText(
-                image.description ?? image.alt_description,
-                "Beautiful Unsplash image"
-              );
+            {images.map((image) => (
+              <article
+                key={image.id}
+                className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-md transition-transform duration-200 hover:-translate-y-1 hover:shadow-xl"
+              >
+                <img
+                  src={image.urls.small}
+                  alt={image.alt_description ?? "Unsplash image"}
+                  className="h-64 w-full object-cover"
+                />
 
-              return (
-                <article
-                  key={image.id}
-                  className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-md transition-transform duration-200 hover:-translate-y-1 hover:shadow-xl"
-                >
-                  <img
-                    src={image.urls.small}
-                    alt={image.alt_description ?? "Unsplash image"}
-                    className="h-64 w-full object-cover"
-                  />
+                <div className="flex flex-1 flex-col justify-between gap-4 p-4">
+                  <p className="text-lg font-semibold text-slate-800">
+                    {image.user.name}
+                  </p>
 
-                  <div className="flex flex-1 flex-col justify-between gap-4 p-4">
-                    <div className="space-y-2">
-                      <p className="text-lg font-semibold text-slate-800">
-                        {image.user.name}
-                      </p>
-                      <p className="min-h-12 text-sm leading-6 text-slate-600">
-                        {shortDescription}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center justify-between text-sm text-slate-500">
-                      <span className="rounded-full bg-blue-100 px-3 py-1 font-medium text-blue-700">
-                        {search}
-                      </span>
-                      <span>{image.likes} likes</span>
-                    </div>
+                  <div className="flex items-center justify-between text-sm text-slate-500">
+                    <span className="rounded-full bg-blue-100 px-3 py-1 font-medium text-blue-700">
+                      {search}
+                    </span>
+                    <span>{image.likes} likes</span>
                   </div>
-                </article>
-              );
-            })}
+                </div>
+              </article>
+            ))}
           </div>
         ) : (
           <div className="rounded-2xl bg-white/80 p-10 text-center text-slate-600 shadow-sm">
