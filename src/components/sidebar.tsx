@@ -12,7 +12,7 @@ const closeSidebar = () => {
 }
 
     return (
-        <div className={`flex ${!isLeftbar ? hideWidth : 'w-fit'} bg-blue-500/40 h-screen overflow-hidden`}>
+        <div className={`flex ${!isLeftbar ? hideWidth : 'w-fit'} bg-blue-500/40 h-screen overflow-hidden sticky top-0`}>
             <div className='w-65 m-2'>
                 <div className='logo-container'>
                     <div className="flex flex-row justify-between mt-3 mb-10">
