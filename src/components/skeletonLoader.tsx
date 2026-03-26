@@ -1,13 +1,4 @@
-const imageTiles = [
-  "col-span-2 row-span-2",
-  "col-span-1 row-span-2",
-  "col-span-1 row-span-1",
-  "col-span-2 row-span-1",
-  "col-span-1 row-span-1",
-  "col-span-1 row-span-2",
-  "col-span-2 row-span-2",
-  "col-span-1 row-span-1",
-]
+const skeletonCards = Array.from({ length: 8 })
 
 export default function SkeletonLoader() {
   return (
@@ -22,27 +13,20 @@ export default function SkeletonLoader() {
           <div className="h-4 w-80 max-w-full rounded-full bg-slate-200" />
         </div>
 
-        <div className="grid auto-rows-[120px] grid-cols-2 gap-4 sm:auto-rows-[140px] sm:grid-cols-3 lg:auto-rows-[160px] lg:grid-cols-4">
-          {imageTiles.map((tileSize, index) => (
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          {skeletonCards.map((_, index) => (
             <article
-              key={`${tileSize}-${index}`}
-              className={`relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white shadow-sm ${tileSize}`}
+              key={index}
+              className="overflow-hidden rounded-2xl bg-white shadow-md"
             >
-              <div className="absolute inset-0 animate-pulse bg-linear-to-br from-slate-200 via-slate-100 to-slate-200" />
+              <div className="h-64 w-full animate-pulse bg-slate-200" />
 
-              <div className="absolute left-4 top-4 flex items-center gap-2">
-                <div className="h-10 w-10 animate-pulse rounded-full bg-white/80" />
-                <div className="space-y-2">
-                  <div className="h-3 w-20 animate-pulse rounded-full bg-white/80" />
-                  <div className="h-3 w-14 animate-pulse rounded-full bg-white/70" />
-                </div>
-              </div>
+              <div className="space-y-4 p-4">
+                <div className="h-6 w-32 animate-pulse rounded-full bg-slate-200" />
 
-              <div className="absolute inset-x-4 bottom-4 space-y-3">
-                <div className="h-3 w-3/4 animate-pulse rounded-full bg-white/85" />
-                <div className="flex gap-2">
-                  <div className="h-8 w-20 animate-pulse rounded-full bg-white/80" />
-                  <div className="h-8 w-16 animate-pulse rounded-full bg-white/70" />
+                <div className="flex items-center justify-between gap-3">
+                  <div className="h-8 w-20 animate-pulse rounded-full bg-slate-200" />
+                  <div className="h-4 w-16 animate-pulse rounded-full bg-slate-200" />
                 </div>
               </div>
             </article>
