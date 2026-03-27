@@ -82,7 +82,7 @@ export default function Home() {
           </div>
         ) : (
           <div className="rounded-2xl bg-white/80 p-10 text-center text-slate-600 shadow-sm">
-            No images found for "{search}".
+            No images found for this search: "{search}".
           </div>
         )}
 
