@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { HomeIcon, MenuSquareIcon, X, HistoryIcon, Settings } from 'lucide-react';
+import { HomeIcon, Menu, X, HistoryIcon, Settings } from 'lucide-react';
 
 type leftsideBarProp ={
     isLeftbar:boolean;
@@ -12,12 +12,12 @@ const closeSidebar = () => {
 }
 
     return (
-        <div className={`flex ${!isLeftbar ? hideWidth : 'w-fit'} bg-blue-400/50 h-screen overflow-hidden`}>
+        <div className={`flex ${!isLeftbar ? hideWidth : 'w-fit'} bg-blue-500/40 h-screen overflow-hidden sticky top-0`}>
             <div className='w-65 m-2'>
                 <div className='logo-container'>
                     <div className="flex flex-row justify-between mt-3 mb-10">
                         <button className='flex px-3 hover:bg-blue-500/50 hover:text-white hover:rounded-2xl w-40 p-3 my-1' onClick={() => changeIsLeftbar(!isLeftbar)}>
-                            <MenuSquareIcon size={24} className='mr-3' /> 
+                            <Menu size={24} className='mr-3' /> 
                             <span className='font-extrabold text-blue-900 ml-1'>IMGSearch</span>
                         </button>
                         <button onClick={closeSidebar} className='hover:bg-blue-500/50 hover:text-white hover:rounded-2xl w-10 p-3 my-1'>
@@ -29,20 +29,20 @@ const closeSidebar = () => {
                         <Link to="/" >
                             <button className='flex hover:bg-blue-500/50 hover:text-white hover:rounded-2xl w-40 p-3 my-1'>
                                 <HomeIcon size={24} className='mr-3.5' />
-                                Home
+                                <span className='font-bold text-blue-950 m-1'>Home</span>
 
                             </button>
                         </Link>
                         <Link to="/history">
                         <button className='flex hover:bg-blue-500/50 hover:text-white hover:rounded-2xl w-40 p-3 my-1'>
                             <HistoryIcon size={24} className='mr-3.5' />
-                            History
+                            <span className='font-bold text-blue-950 m-1'>History</span>
                         </button>
                         </Link>
                         <Link to="/settings">
                         <button className='flex hover:bg-blue-500/50 hover:text-white hover:rounded-2xl w-40 p-3 my-1'>
                             <Settings size={24} className='mr-3.5' />
-                         Settings
+                         <span className='font-bold text-blue-950 m-1'>Settings</span>
                         </button>
                         </Link>
                     </div>

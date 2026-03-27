@@ -42,7 +42,7 @@ export default function Home() {
   });
 
   if (isLoading) return <SkeletonLoader />;
-  if (isError) return <p>Something went wrong: {error.message}</p>;
+  if (isError) return <p>Something went wrong(error): {error.message}</p>;
 
   const images = data?.results ?? [];
 
@@ -82,18 +82,18 @@ export default function Home() {
           </div>
         ) : (
           <div className="rounded-2xl bg-white/80 p-10 text-center text-slate-600 shadow-sm">
-            No images found for "{search}".
+            No images found for this search: "{search}".
           </div>
         )}
 
         <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
           <button className="absolute top-7 right-60 rounded-full bg-black/50 text-white" onClick={() => setIsOpen(false)}>
-            <X size={24} />
+            <X size={24}/>
           </button>
           <img
             src={images[0].urls.small}
             alt={images[0].alt_description ?? "Unsplash image"}
-            className="h-full w-full object-contain rounded-2xl" 
+            className="h-full w-full object-contain rounded-2xl"
           />
         </Modal>
       </div>
