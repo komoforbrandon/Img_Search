@@ -88,7 +88,7 @@ export default function Home() {
 
         <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
           <button className="absolute top-7 right-60 rounded-full bg-black/50 text-white" onClick={() => setIsOpen(false)}>
-            <X size={24} />
+            <X size={24}/>
           </button>
           <img
             src={images[0].urls.small}
