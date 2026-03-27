@@ -2,8 +2,9 @@ import ImgSearch from "./search";
 import SkeletonLoader from "./skeletonLoader";
 import { useQuery } from "@tanstack/react-query";
 import fetchImages from "../api/imgfetch";
-import { useState } from "react";
-import { Heart } from "lucide-react";
+import { Children, useState } from "react";
+import { Heart, X } from "lucide-react";
+import { createPortal } from 'react-dom';
 
 type UnsplashImage = {
   id: string;
@@ -21,7 +22,19 @@ type UnsplashResponse = {
   results: UnsplashImage[];
 };
 
+function Modal({ isOpen, onClose, children }: { isOpen: boolean; onClose: () => void; children: React.ReactNode }) {
+  if (!isOpen) return null;
+  return createPortal(
+    <>
+      <div className="fixed inset-0 bg-black/50" onClick={onClose} />
+      <div className="fixed inset-0 flex items-center justify-center p-4">{children}</div>
+    </>,
+    document.body
+  );
+}
+
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("nature");
   const { data, isLoading, isError, error } = useQuery<UnsplashResponse, Error>({
     queryKey: ["images", search],
@@ -49,6 +62,7 @@ export default function Home() {
                   src={image.urls.small}
                   alt={image.alt_description ?? "Unsplash image"}
                   className="h-64 w-full object-cover"
+                  onClick={() => setIsOpen(true)}
                 />
 
                 <div className="flex flex-1 flex-col justify-between gap-4 p-4">
@@ -71,6 +85,17 @@ export default function Home() {
             No images found for "{search}".
           </div>
         )}
+
+        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+          <button className="absolute top-7 right-60 rounded-full bg-black/50 text-white" onClick={() => setIsOpen(false)}>
+            <X size={24} />
+          </button>
+          <img
+            src={images[0].urls.small}
+            alt={images[0].alt_description ?? "Unsplash image"}
+            className="h-full w-full object-contain rounded-2xl"
+          />
+        </Modal>
       </div>
     </div>
   );
