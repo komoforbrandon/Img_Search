@@ -1,11 +1,11 @@
 import { Search } from "lucide-react";
 import { useState } from "react";
+import fetchImages from "../api/imgfetch";
 
-type SearchProps = {
-  onSearch: (value: string) => void;
+const handleSearch = (search: string) => {
+  fetchImages(search)
 }
-
-export default function ImgSearch({ onSearch }: SearchProps) {
+export default function ImgSearch() {
   const [search, setSearch] = useState('')
   return (
     <div className="flex flex-row items-center py-2 px-6 border-2 border-b-blue-800/70 outline-1 outline-blue-800/50 rounded-3xl my-3 mx-auto max-w-3xl">
