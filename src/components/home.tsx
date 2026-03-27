@@ -93,7 +93,7 @@ export default function Home() {
           <img
             src={images[0].urls.small}
             alt={images[0].alt_description ?? "Unsplash image"}
-            className="h-full w-full object-contain rounded-2xl"
+            className="h-full w-full object-contain rounded-2xl" 
           />
         </Modal>
       </div>
