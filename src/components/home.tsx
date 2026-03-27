@@ -3,6 +3,7 @@ import SkeletonLoader from "./skeletonLoader";
 import { useQuery } from "@tanstack/react-query";
 import fetchImages from "../api/imgfetch";
 import { useState } from "react";
+import { Heart } from "lucide-react";
 
 type UnsplashImage = {
   id: string;
@@ -59,7 +60,7 @@ export default function Home() {
                     <span className="rounded-full bg-blue-100 px-3 py-1 font-medium text-blue-700">
                       {search}
                     </span>
-                    <span>{image.likes} likes</span>
+                    <span className="flex p-1 bg-blue-500/30 rounded-3xl"><Heart size={16} color="red" /> {image.likes} likes</span>
                   </div>
                 </div>
               </article>
