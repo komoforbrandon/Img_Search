@@ -13,6 +13,6 @@ export default function ImgSearch({ onSearch }: SearchProps) {
       <button className="cursor-pointer" onClick={() => onSearch(search)}>
         <Search size={25} />
       </button>
-    </div>
+    </div> 
   );
 }
