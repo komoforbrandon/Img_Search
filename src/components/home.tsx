@@ -42,7 +42,7 @@ export default function Home() {
   });
 
   if (isLoading) return <SkeletonLoader />;
-  if (isError) return <p>Something went wrong: {error.message}</p>;
+  if (isError) return <p>Something went wrong(error): {error.message}</p>;
 
   const images = data?.results ?? [];
 
